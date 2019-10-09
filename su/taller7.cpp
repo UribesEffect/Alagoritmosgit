@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
 using namespace std;
+/*
 //punto1
 int main() {
   int ival = 1024;//asignar
-  // int &ref; //no puedo decir que una referencia es igual a un entero
+  //int &ref; //no puedo decir que una referencia es igual a un entero
   int &rval = ival;//asignar un valor a una referencia
   //int *pval1 = rval;//no puedo transformar un entero a un puntero
   int *pval2 = &rval;//asignar una referencia a un puntero
@@ -18,7 +20,7 @@ int main() {
 
   return 0;
 }
-
+*/
 //punto 2
 /*
 int main(){
@@ -27,8 +29,9 @@ int main(){
   refInt = 10;
   cout << integer << "\t" << refInt  << endl;
   return 0;
-}*/
+}
   //imprime integer = 10 y refInt = 10
+*/
 /*
 int main(){
   int integer;
@@ -38,8 +41,8 @@ int main(){
   refInt = 10;
   cout << integer << "\t" << refInt  << endl;
   return 0;
-}*/
-
+}
+*/
 /*punto3
 
 1.Un puntero puede ser re-asigando cualquier numero de veces
@@ -56,3 +59,46 @@ int main(){
  como si es posible hacer con punteros.
 
 */
+
+//punto 4
+/*
+int main() {
+
+  bool array[128];
+  bool *ap[128];
+  cout << *ap[128] << '\t' << array[128] << endl;
+
+
+  return 0;
+}
+*/
+
+//punto 5
+/*
+char * deep_copy(char *ch){
+
+  return ch ;
+}
+
+
+int main(){
+  char myarray[4] = {'a','b','c','d'};
+
+  cout << deep_copy(myarray)<< endl;
+  return 0;
+}
+*/
+istream& read_line_to_char_array(istream &is){
+
+
+  return is;
+
+}
+
+
+int main(){
+  string a;
+  cin >> a;
+  cout << read_line_to_char_array(a) << endl;
+  return 0;
+}
