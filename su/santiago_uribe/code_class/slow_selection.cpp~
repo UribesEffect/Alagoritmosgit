@@ -1,0 +1,52 @@
+#include <iostream>
+#include "functions.hpp"
+using namespace std;
+
+
+int slow_selection(int k, vector<int>& v){
+  for(int i = 0; i < k-1; ++i){
+    int min_id = i;
+    for(int j = i+1; j < v.size(); ++j){
+      if(v[j] < v[min_id])
+	min_id = j;
+    }
+    swap(i, min_id, v);
+  }
+  return v[k-1];
+}
+
+
+int main(){
+  int times = 100;
+  int size = 12;
+  int k = 8;
+  vector<int> vec;
+
+  //random number generator
+  unsigned seed = 123;
+  minstd_rand0 rng(seed);
+
+  double tot_time = 0;
+  for(int n = 0; n < times; ++n){
+    //Generate the random vector without repetitions
+    generate_norepeat_vector(size, vec, rng);
+
+    //print vector
+    print_vector(vec);
+
+    //get initial time
+    double tstart = gettime();
+    
+    //look for the k-th smallest element with slow_selection
+    int kth = slow_selection(k, vec);
+    
+    //final time
+    double tstop = gettime();
+    tot_time += tstop-tstart;
+
+    cout << "The " << k << "th element is " << kth << "\n";
+  }
+  cout << "Time taken = " << tot_time / times << endl;
+  
+  return 0;
+}
