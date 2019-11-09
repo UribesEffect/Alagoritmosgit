@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 /*
@@ -80,7 +81,7 @@ int main (){
 }*/
 
 //punto 7
-
+/*
 #include <vector>
 
 void reverse_vector(vector<int>& vec ){
@@ -92,6 +93,7 @@ void reverse_vector(vector<int>& vec ){
     vec[tam-1-i] = cont;
   }
 }
+*/
 /*
 void reverse1_vector(vector<int>& vec){
   int cont;
@@ -104,7 +106,7 @@ void reverse1_vector(vector<int>& vec){
   }
 }
 */
-
+/*
 int main(){
   int myints[] = {1,2,3,4,5,6,7,8,9};
 
@@ -117,4 +119,44 @@ int main(){
 	  cout << "\n";
 
 	return 0;
+}
+*/  //punto8
+template <typename T>
+int bls_helper(const vector<T> &vec, int &lh, int &rh, T key){
+  if(lh <= rh){
+    int mid = (lh + rh) / 2 ;
+    if (key == vec[mid]) {
+      return mid;
+    }
+    else{
+      int mid2 = mid - 1;
+      int mid3 = mid + 1;
+      return bls_helper(vec, lh, mid2, key) + bls_helper(vec, mid3, rh, key) + 1;
+    }
+  }
+  return -1;
+}
+
+template <typename T>
+int binary_like_search(const vector<T> &vec, T key){
+  int lh = 0;
+  int rh = vec.size() - 1;
+  return bls_helper(vec, lh, rh, key);
+}
+
+int main() {
+  vector<int> u = {-11,-9,-7,-5,-3,-1};
+  cout << "bls in : " << binary_like_search(u, -5) << '\n';
+  cout << "bls in : " << binary_like_search(u, 4) << '\n';
+
+  vector<int> v = {'u','U','o','i','w','x','X','a'};
+  cout << "bls in : " << binary_like_search(v, 'x') << '\n';
+  cout << "bls in : " << binary_like_search(v, 'i') << '\n';
+/*
+  vector<int> w = {-10.0,-5.5,0.0,4.0,56.2,41.8};
+  cout << "bls in : " << binary_like_search(w, 41.8) << '\n';
+  cout << "bls in : " << binary_like_search(w, 0.0) << '\n';
+
+  */
+  return 0;
 }

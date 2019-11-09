@@ -1,8 +1,9 @@
 #ifndef __ARBOLESENANOS_HPP
 #define __ARBOLESENANOS_HPP
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
+
+
+
 using namespace std;
 
 template <typename T>
@@ -20,6 +21,9 @@ private:
   void insertNode(BSTNode<T>* &t, T k);
   void destroyRecursive(BSTNode<T> *t);
   void displayNode(BSTNode<T> *t ,int count);
+
+  BSTNode<T>* findNode(BSTNode<T> *t, T k);
+
 public:
   BST() { root = nullptr; }
   ~BST() {destroyRecursive(root);}
@@ -27,6 +31,11 @@ public:
   void insertNode(T k) {insertNode(root, k); }
 
   void displayNode() {displayNode(root, 0); }
+
+  BSTNode<T>* findNode2(T k);
+
+
+
 };
 
 
@@ -39,16 +48,36 @@ void BST<T>::insertNode(BSTNode<T>* &t, T k){
     t->left = t->right = nullptr;
   }else{
     if (k != t->key) {
-      if (strcmp(t->key , k) == 1) {
+      if (k > t->key) {
         insertNode(t->left, k);
         //cout << "insertando " << k << " a la izquierda de " << t->key << '\n';
-      }if(strcmp(t->key , k) == -1){
+      }if(k < t->key){
         insertNode(t->right,k);
         //cout << "insertando " << k << " a la derecha de " << t->key << '\n';
       }
     }
   }
 }
+
+template <typename T>
+BSTNode<T>* BST<T>::findNode(BSTNode<T> *t, T k){
+  if(t == nullptr) return nullptr;
+  if(t == nullptr) return t;
+  if(k < t->key){
+    return findNode(t->left , k);
+  }else{
+    return findNode(t->right, k);
+  }
+}
+
+template <typename T>
+BSTNode<T>* BST<T>::findNode2(T k){
+  return findNode(root, k);
+}
+
+
+
+
 
 template <typename T>
 void BST<T>::destroyRecursive(BSTNode<T> *t){
